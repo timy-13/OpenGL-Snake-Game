@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\snake game old\glad.c">
+    <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\snake game old\Board.cpp">
+    <ClCompile Include="src\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\snake game old\game.cpp">
+    <ClCompile Include="src\objects\Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\snake game old\shaders_class.cpp">
+    <ClCompile Include="src\shaders\shaders_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\snake game old\board.h">
+    <ClInclude Include="src\objects\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\snake game old\shaders_class.h">
+    <ClInclude Include="src\shaders\shaders_class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\objects\Board.cpp" />
+    <ClCompile Include="src\shaders\shaders_class.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\objects\board.h" />
+    <ClInclude Include="src\shaders\shaders_class.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -131,16 +141,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\snake game old\Board.cpp" />
-    <ClCompile Include="..\snake game old\game.cpp" />
-    <ClCompile Include="..\snake game old\glad.c" />
-    <ClCompile Include="..\snake game old\shaders_class.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\snake game old\board.h" />
-    <ClInclude Include="..\snake game old\shaders_class.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
