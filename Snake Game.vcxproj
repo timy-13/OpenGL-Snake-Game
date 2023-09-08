@@ -19,14 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\objects\Board.cpp" />
     <ClCompile Include="src\shaders\shaders_class.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game.h" />
     <ClInclude Include="src\objects\board.h" />
     <ClInclude Include="src\shaders\shaders_class.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
