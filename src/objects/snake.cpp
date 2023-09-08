@@ -1,16 +1,13 @@
 #include "snake.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
-
 // configures quad VAO
 void Snake::Snake(Shader& shader) {
     this->shader = shader;
     this->initRenderData();
+}
+
+void Snake::~Snake() {
+    glDeleteVertexArrays(1, &this->quadVAO);
 }
 
 void Snake::drawSnake(glm::vec3 color) {

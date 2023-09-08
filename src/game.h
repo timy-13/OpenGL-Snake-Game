@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef GAME_H
 #define GAME_H
 
@@ -31,6 +29,6 @@ public:
     void ProcessInput(float dt);
     void Update(float dt);
     void Render();
-}
+};
 
 #endif

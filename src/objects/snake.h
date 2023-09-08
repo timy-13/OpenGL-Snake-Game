@@ -1,3 +1,6 @@
+#ifndef SNAKE_H
+#define SNAKE_H
+
 #pragma once
 
 #include <glad/glad.h>
@@ -26,3 +29,5 @@ private:
 
 	// void move();
 };
+
+#endif
