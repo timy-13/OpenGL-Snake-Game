@@ -65,11 +65,11 @@ void Shader::compile(const char* vPath, const char* fPath) {
 	checkCompileErrors(fs, "FRAGMENT");
 
 	// shader program
-	ID = glCreateProgram();
-	glAttachShader(ID, vs);
-	glAttachShader(ID, fs);
-	glLinkProgram(ID);
-	checkCompileErrors(ID, "PROGRAM");
+	this->ID = glCreateProgram();
+	glAttachShader(this->ID, vs);
+	glAttachShader(this->ID, fs);
+	glLinkProgram(this->ID);
+	checkCompileErrors(this->ID, "PROGRAM");
 
 	// delete shaders since they have been linked
 	glDeleteShader(vs);

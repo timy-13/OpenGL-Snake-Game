@@ -35,5 +35,5 @@ void Game::ProcessInput(float dt)
 
 void Game::Render()
 {
-    snake->drawSnake(glm::vec3(1.0f, 0.5f, 0.2f));
+    snake->drawSnake();
 }

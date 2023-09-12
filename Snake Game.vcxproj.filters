@@ -52,5 +52,7 @@
     <None Include="README.md" />
     <None Include="src\shaders\snake.vs" />
     <None Include="src\shaders\snake.fs" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>

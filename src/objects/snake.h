@@ -19,7 +19,7 @@ public:
 	Snake(Shader &shader);
 	~Snake();
 
-	void drawSnake(glm::vec3 color);
+	void drawSnake();
 
 private:
 	Shader shader;

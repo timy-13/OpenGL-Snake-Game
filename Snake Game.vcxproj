@@ -33,6 +33,8 @@
     <ClInclude Include="src\shaders\shaders_class.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="README.md" />
     <None Include="src\shaders\snake.fs" />
     <None Include="src\shaders\snake.vs" />
