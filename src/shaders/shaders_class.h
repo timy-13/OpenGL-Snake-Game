@@ -4,6 +4,11 @@
 #pragma once
 
 #include <glad/glad.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <iostream>
 
 class Shader {
@@ -11,10 +16,17 @@ public:
 	unsigned int ID;
 
 	// constructor for vertex and fragment shaders
-	Shader(const char* vPath, const char* fpath);
+	// Shader(const char* vPath, const char* fpath);
 
-	// activate shader
-	void use();
+	Shader();
+
+	void    SetVector3f(const char* name, float x, float y, float z, bool useShader = false);
+	void    SetVector3f(const char* name, const glm::vec3& value, bool useShader = false);
+
+	void compile(const char* vPath, const char* fpath);
+
+	// sets shader as active
+	Shader &use();
 
 private:
 	void checkCompileErrors(unsigned int shader, std::string type) {

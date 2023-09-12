@@ -1,17 +1,18 @@
 #include "snake.h"
+#include "../shaders/shaders_class.h"
 
 // configures quad VAO
-void Snake::Snake(Shader& shader) {
+Snake::Snake(Shader &shader) {
     this->shader = shader;
     this->initRenderData();
 }
 
-void Snake::~Snake() {
+Snake::~Snake() {
     glDeleteVertexArrays(1, &this->quadVAO);
 }
 
 void Snake::drawSnake(glm::vec3 color) {
-    this->shader.Use();
+    this->shader.use();
 
     this->shader.SetVector3f("spriteColor", color);
 
@@ -25,14 +26,9 @@ void Snake::initRenderData() {
     unsigned int VBO;
 
     float vertices[] = {
-        // pos      // tex
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 0.0f,
-
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 1.0f, 1.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f
+        -0.5f, -0.5f, 0.0f, // left  
+         0.5f, -0.5f, 0.0f, // right 
+         0.0f,  0.5f, 0.0f  // top   
     };
 
     glGenVertexArrays(1, &this->quadVAO);
@@ -43,7 +39,7 @@ void Snake::initRenderData() {
 
     glBindVertexArray(this->quadVAO);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    // glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }

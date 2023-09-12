@@ -4,6 +4,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "shaders/shaders_class.h"
+#include "objects/snake.h"
+
 enum GameState {
     GAME_ACTIVE,
     GAME_MENU,

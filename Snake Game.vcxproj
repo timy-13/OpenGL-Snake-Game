@@ -19,19 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\objects\snake.cpp" />
     <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\objects\Board.cpp" />
     <ClCompile Include="src\shaders\shaders_class.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h" />
+    <ClInclude Include="src\game.h" />
     <ClInclude Include="src\objects\board.h" />
+    <ClInclude Include="src\objects\snake.h" />
     <ClInclude Include="src\shaders\shaders_class.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="src\shaders\snake.fs" />
+    <None Include="src\shaders\snake.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -89,6 +93,10 @@
     <IncludePath>C:\Visual Studio Projects\includes;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Visual Studio Projects\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Visual Studio Projects\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Visual Studio Projects\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -99,6 +107,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

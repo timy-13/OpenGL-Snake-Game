@@ -7,7 +7,11 @@
 #include <sstream>
 #include <iostream>
 
-Shader::Shader(const char* vPath, const char* fPath) {
+Shader::Shader() {
+
+}
+
+void Shader::compile(const char* vPath, const char* fPath) {
 
 	// retrieve shader source code from file
 	// --------------------------------------
@@ -72,6 +76,21 @@ Shader::Shader(const char* vPath, const char* fPath) {
 	glDeleteShader(fs);
 }
 
-void Shader::use() {
-	glUseProgram(ID);
+Shader &Shader::use() {
+	glUseProgram(this->ID);
+	return *this;
 }
+
+void Shader::SetVector3f(const char* name, float x, float y, float z, bool useShader)
+{
+	if (useShader)
+		this->use();
+	glUniform3f(glGetUniformLocation(this->ID, name), x, y, z);
+}
+void Shader::SetVector3f(const char* name, const glm::vec3& value, bool useShader)
+{
+	if (useShader)
+		this->use();
+	glUniform3f(glGetUniformLocation(this->ID, name), value.x, value.y, value.z);
+}
+
