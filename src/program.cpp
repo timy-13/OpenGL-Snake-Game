@@ -21,7 +21,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-Game Snake(SCR_WIDTH, SCR_HEIGHT);
+Game SnakeGame(SCR_WIDTH, SCR_HEIGHT);
 
 int main()
 {
@@ -58,7 +58,7 @@ int main()
 
     // initialize game
     // ---------------
-    Snake.Init();
+    SnakeGame.Init();
 
     // deltaTime variables
     // -------------------
@@ -88,7 +88,7 @@ int main()
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        Snake.Render();
+        SnakeGame.Render();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

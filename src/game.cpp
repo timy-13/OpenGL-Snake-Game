@@ -18,7 +18,7 @@ void Game::Init()
 {
     // load shaders
     Shader shader;
-    shader.compile("shaders/snake.vs", "shaders/snake.fs");
+    shader.compile("src/shaders/snake.vs", "src/shaders/snake.fs");
 
     snake = new Snake(shader);
 }

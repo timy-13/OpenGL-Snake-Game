@@ -22,7 +22,6 @@ void Shader::compile(const char* vPath, const char* fPath) {
 
 	vsFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	fsFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-
 	try {
 		// open files
 		vsFile.open(vPath);
@@ -38,7 +37,7 @@ void Shader::compile(const char* vPath, const char* fPath) {
 		fsFile.close();
 		
 		// convert stream into string
-		vCode = vsStream.str();
+		vCode = vsStream.str();	
 		fCode = fsStream.str();
 	}
 	catch (std::ifstream::failure& e) {
