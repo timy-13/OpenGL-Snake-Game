@@ -93,3 +93,9 @@ void Shader::SetVector3f(const char* name, const glm::vec3& value, bool useShade
 	glUniform3f(glGetUniformLocation(this->ID, name), value.x, value.y, value.z);
 }
 
+void Shader::SetMatrix4(const char* name, const glm::mat4& matrix, bool useShader)
+{
+	if (useShader)
+		this->use();
+	glUniformMatrix4fv(glGetUniformLocation(this->ID, name), 1, false, glm::value_ptr(matrix));
+}

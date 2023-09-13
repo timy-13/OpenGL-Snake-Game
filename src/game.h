@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 #include "shaders/shaders_class.h"
-#include "objects/snake.h"
+#include "objects/sprite.h"
 
 enum GameState {
     GAME_ACTIVE,

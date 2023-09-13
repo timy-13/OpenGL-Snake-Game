@@ -13,21 +13,19 @@
 #include "../shaders/shaders_class.h"
 
 
-class Snake {
+class Sprite {
 public:
 	// constructor, deconstructor
-	Snake(Shader &shader);
-	~Snake();
+	Sprite(Shader &shader);
+	~Sprite();
 
-	void drawSnake();
+	void drawSprite(glm::vec2 position, glm::vec2 size = glm::vec2(10.0f, 10.0f), float rotate = 0.0f, glm::vec3 color = glm::vec3(0.0f, 1.0f, 0.0f));
 
 private:
 	Shader shader;
 	unsigned int quadVAO;
 
 	void initRenderData();
-
-	// void move();
 };
 
 #endif

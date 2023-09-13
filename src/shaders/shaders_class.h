@@ -22,6 +22,7 @@ public:
 
 	void    SetVector3f(const char* name, float x, float y, float z, bool useShader = false);
 	void    SetVector3f(const char* name, const glm::vec3& value, bool useShader = false);
+	void    SetMatrix4(const char* name, const glm::mat4& matrix, bool useShader = false);
 
 	void compile(const char* vPath, const char* fpath);
 
