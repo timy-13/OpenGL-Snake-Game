@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\objects\snake.cpp" />
     <ClCompile Include="src\objects\sprite.cpp" />
     <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\objects\Board.cpp" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\objects\board.h" />
+    <ClInclude Include="src\objects\snake.h" />
     <ClInclude Include="src\objects\sprite.h" />
     <ClInclude Include="src\shaders\shaders_class.h" />
   </ItemGroup>

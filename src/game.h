@@ -10,8 +10,12 @@
 enum GameState {
     GAME_ACTIVE,
     GAME_MENU,
-    GAME_WIN
+    GAME_WIN,
+    GAME_OVER
 };
+
+const glm::vec2 SQR_SIZE(30.0f, 30.0f);
+const float SNAKE_VELOCITY(200.0f);
 
 class Game
 {
