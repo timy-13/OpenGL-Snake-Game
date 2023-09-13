@@ -57,10 +57,10 @@ void Game::ProcessInput(float dt)
             snake->position.x += velocity;
         }
         if (this->Keys[GLFW_KEY_UP]) {
-            snake->position.y += velocity;
+            snake->position.y -= velocity;
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
-            snake->position -= velocity;
+            snake->position.y += velocity;
         }
 
     }
