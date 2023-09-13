@@ -21,6 +21,7 @@ void Game::Init()
     shader.compile("src/shaders/snake.vs", "src/shaders/snake.fs");
 
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width), static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
+    shader.use();
     shader.SetMatrix4("projection", projection);
     sprite = new Sprite(shader);
 }
