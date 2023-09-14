@@ -18,8 +18,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 510;
+const unsigned int SCR_HEIGHT = 450;
 
 Game SnakeGame(SCR_WIDTH, SCR_HEIGHT);
 

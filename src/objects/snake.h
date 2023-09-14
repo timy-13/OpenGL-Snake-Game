@@ -5,14 +5,18 @@
 
 class Snake {
 public:
-	glm::vec2 position, size, velocity;
+	glm::vec2 position, size;
 	glm::vec3 color;
+	float velocity;
 	float rotation;
+	std::string direction;
 	
 	// constructor
 	Snake();
-	Snake(glm::vec2 pos, glm::vec2 size, glm::vec3 color = glm::vec3(1.0f), glm::vec2 velocity = glm::vec2(0.0f, 0.0f));
+	Snake(glm::vec2 pos, glm::vec2 size, glm::vec3 color = glm::vec3(1.0f), float velocity = 0.0f, std::string direction = "right");
 
 	// draw snake
 	virtual void drawSnake(Sprite& sprite);
+	glm::vec2 move(float dt, unsigned int window_width, std::string direction);
+	glm::vec2 grow();
 };

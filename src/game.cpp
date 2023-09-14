@@ -1,14 +1,15 @@
 #include "game.h"
 #include "objects/sprite.h"
 #include "objects/snake.h"
+#include "objects/treat.h"
 
 Sprite *sprite;
 Snake* snake;
-
+Treat* treat;
 
 
 Game::Game(unsigned int width, unsigned int height)
-    : State(GAME_ACTIVE), Keys(), Width(width), Height(height)
+    : State(GAME_MENU), Keys(), Width(width), Height(height)
 {
 
 }
@@ -17,6 +18,7 @@ Game::~Game()
 {
     delete sprite;
     delete snake;
+    delete treat;
 }
 
 void Game::Init()
@@ -31,36 +33,62 @@ void Game::Init()
     sprite = new Sprite(shader);
 
     // configure snake object
-    snake = new Snake(glm::vec2(400.0f, 300.0f), SQR_SIZE);
+    snake = new Snake(glm::vec2(255.0f, 200.0f), SQR_SIZE, SNAKE_COLOR, SNAKE_VELOCITY);
+    treat = new Treat(glm::vec2(255.0f, 200.0f), SQR_SIZE, TREAT_COLOR);
 
 }
 
 void Game::Update(float dt)
 {
+    if (this->State == GAME_ACTIVE) {
+        snake->move(dt, this->Width, snake->direction);
 
+        if (snake->position.x <= 0 || snake->position.x >= this->Width || snake->position.y <= 0 || snake->position.y >= this->Height) {
+            this->Reset();
+        }
+        
+        if (snake->position.x == treat->position.x ) {
+            treat->respawn();
+            treat->drawTreat(*sprite);
+        }
+    }
+    
 }
 
 void Game::ProcessInput(float dt)
 {
-    if (this->State == GAME_ACTIVE) {
-        float velocity = SNAKE_VELOCITY * dt;
-
+    if (this->State == GAME_MENU) {
         if (this->Keys[GLFW_KEY_LEFT]) {
-            if (snake->position.x >= 0.0f) {
-                snake->position.x -= velocity;
-            }
-            else {
-                this->State = GAME_OVER;
-            }
+            this->State = GAME_ACTIVE;
+            snake->direction = "left";
         }
         if (this->Keys[GLFW_KEY_RIGHT]) {
-            snake->position.x += velocity;
+            this->State = GAME_ACTIVE;
+            snake->direction = "right";
         }
         if (this->Keys[GLFW_KEY_UP]) {
-            snake->position.y -= velocity;
+            this->State = GAME_ACTIVE;
+            snake->direction = "up";
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
-            snake->position.y += velocity;
+            this->State = GAME_ACTIVE;
+            snake->direction = "down";
+        }
+    }
+
+    if (this->State == GAME_ACTIVE) {
+
+        if (this->Keys[GLFW_KEY_LEFT]) {
+            snake->direction = "left";
+        }
+        if (this->Keys[GLFW_KEY_RIGHT]) {
+            snake->direction = "right";
+        }
+        if (this->Keys[GLFW_KEY_UP]) {
+            snake->direction = "up";
+        }
+        if (this->Keys[GLFW_KEY_DOWN]) {
+            snake->direction = "down";
         }
 
     }
@@ -69,9 +97,14 @@ void Game::ProcessInput(float dt)
 void Game::Render()
 {
     if (this->State == GAME_ACTIVE) {
-        // sprite->drawSprite(glm::vec2(300.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-
+        treat->drawTreat(*sprite);
         snake->drawSnake(*sprite);
     }
     
+}
+
+void Game::Reset() {
+    this->State = GAME_MENU;
+    snake->size = SQR_SIZE;
+    snake->position = glm::vec2(400.0f, 300.0f);
 }
