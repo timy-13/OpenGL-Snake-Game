@@ -65,6 +65,7 @@ int main()
     // -------------------
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
+    float moveTime = 0.0f;
 
     // render loop
     // -----------
@@ -76,13 +77,20 @@ int main()
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+        moveTime += deltaTime;
         glfwPollEvents();
 
         // input
         // -----
         SnakeGame.ProcessInput(deltaTime);
 
-        SnakeGame.Update(deltaTime);
+        // SnakeGame.Update(deltaTime);
+
+        if (moveTime > 0.3f) {
+            SnakeGame.Update(deltaTime);
+            moveTime = 0;
+        }
+        
 
         // render
         // ------

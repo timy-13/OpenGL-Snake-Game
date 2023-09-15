@@ -33,21 +33,21 @@ void Game::Init()
     sprite = new Sprite(shader);
 
     // configure snake object
-    snake = new Snake(glm::vec2(255.0f, 200.0f), SQR_SIZE, SNAKE_COLOR, SNAKE_VELOCITY);
-    treat = new Treat(glm::vec2(255.0f, 200.0f), SQR_SIZE, TREAT_COLOR);
+    snake = new Snake(glm::vec2(0.0f, 0.0f), SQR_SIZE, SNAKE_COLOR, SNAKE_VELOCITY);
+    treat = new Treat(glm::vec2(60.0f, 210.0f), SQR_SIZE, TREAT_COLOR);
 
 }
 
 void Game::Update(float dt)
 {
     if (this->State == GAME_ACTIVE) {
-        snake->move(dt, this->Width, snake->direction);
+        snake->move(dt, this->Width, snake->direction, snake->nextDirection);
 
-        if (snake->position.x <= 0 || snake->position.x >= this->Width || snake->position.y <= 0 || snake->position.y >= this->Height) {
+        if (snake->position.x < 0 || snake->position.x > (this->Width - SQR_SIZE.x) || snake->position.y < 0 || snake->position.y >(this->Height - SQR_SIZE.y)) {
             this->Reset();
         }
         
-        if (snake->position.x == treat->position.x ) {
+        if (snake->position == treat->position) {
             treat->respawn();
             treat->drawTreat(*sprite);
         }
@@ -60,35 +60,35 @@ void Game::ProcessInput(float dt)
     if (this->State == GAME_MENU) {
         if (this->Keys[GLFW_KEY_LEFT]) {
             this->State = GAME_ACTIVE;
-            snake->direction = "left";
+            snake->nextDirection = "left";
         }
         if (this->Keys[GLFW_KEY_RIGHT]) {
             this->State = GAME_ACTIVE;
-            snake->direction = "right";
+            snake->nextDirection = "right";
         }
         if (this->Keys[GLFW_KEY_UP]) {
             this->State = GAME_ACTIVE;
-            snake->direction = "up";
+            snake->nextDirection = "up";
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
             this->State = GAME_ACTIVE;
-            snake->direction = "down";
+            snake->nextDirection = "down";
         }
     }
 
     if (this->State == GAME_ACTIVE) {
 
         if (this->Keys[GLFW_KEY_LEFT]) {
-            snake->direction = "left";
+            snake->nextDirection = "left";
         }
         if (this->Keys[GLFW_KEY_RIGHT]) {
-            snake->direction = "right";
+            snake->nextDirection = "right";
         }
         if (this->Keys[GLFW_KEY_UP]) {
-            snake->direction = "up";
+            snake->nextDirection = "up";
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
-            snake->direction = "down";
+            snake->nextDirection = "down";
         }
 
     }

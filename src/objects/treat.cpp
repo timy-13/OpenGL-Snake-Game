@@ -17,8 +17,8 @@ glm::vec2 Treat::respawn() {
 	int x, y;
 
 	std::srand(time(0));
-	x = (rand() % 17) + 1;
-	y = (rand() % 15) + 1;
+	x = (rand() % 17);
+	y = (rand() % 15);
 
 	this->position.x = x * 30.0f;
 	this->position.y = y * 30.0f;

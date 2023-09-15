@@ -15,7 +15,7 @@ enum GameState {
 
 const glm::vec2 SQR_SIZE(30.0f, 30.0f);
 const glm::vec3 SNAKE_COLOR(0.0f, 1.0f, 0.0f);
-const float SNAKE_VELOCITY(150.0f);
+const float SNAKE_VELOCITY(30.0f);
 
 const glm::vec3 TREAT_COLOR(1.0f, 0.0f, 0.0f);
 
