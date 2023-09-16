@@ -18,6 +18,7 @@ const glm::vec3 SNAKE_COLOR(0.0f, 1.0f, 0.0f);
 const float SNAKE_VELOCITY(30.0f);
 
 const glm::vec3 TREAT_COLOR(1.0f, 0.0f, 0.0f);
+const float MAX_LENGTH(5);
 
 class Game
 {

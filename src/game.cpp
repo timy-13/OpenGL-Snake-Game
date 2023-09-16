@@ -33,7 +33,11 @@ void Game::Init()
     sprite = new Sprite(shader);
 
     // configure snake object
-    snake = new Snake(glm::vec2(0.0f, 0.0f), SQR_SIZE, SNAKE_COLOR, SNAKE_VELOCITY);
+    // glm::vec2(0.0f, 0.0f)
+    std::deque<glm::vec2> lSnake;
+    lSnake.push_back(glm::vec2(0.0f, 0.0f));
+
+    snake = new Snake(lSnake, SQR_SIZE, SNAKE_COLOR, SNAKE_VELOCITY);
     treat = new Treat(glm::vec2(60.0f, 210.0f), SQR_SIZE, TREAT_COLOR);
 
 }
@@ -43,11 +47,14 @@ void Game::Update(float dt)
     if (this->State == GAME_ACTIVE) {
         snake->move(dt, this->Width, snake->direction, snake->nextDirection);
 
-        if (snake->position.x < 0 || snake->position.x > (this->Width - SQR_SIZE.x) || snake->position.y < 0 || snake->position.y >(this->Height - SQR_SIZE.y)) {
+        float posX = snake->lSnake.begin()->x;
+        float posY = snake->lSnake.begin()->y;
+
+        if (posX < 0 || posX > (this->Width - SQR_SIZE.x) || posY < 0 || posY >(this->Height - SQR_SIZE.y)) {
             this->Reset();
         }
         
-        if (snake->position == treat->position) {
+        if (glm::vec2(posX, posY) == treat->position) {
             treat->respawn();
             treat->drawTreat(*sprite);
         }
@@ -106,5 +113,6 @@ void Game::Render()
 void Game::Reset() {
     this->State = GAME_MENU;
     snake->size = SQR_SIZE;
-    snake->position = glm::vec2(400.0f, 300.0f);
+    snake->lSnake.clear();
+    snake->lSnake.push_back(glm::vec2(400.0f, 300.0f));
 }
