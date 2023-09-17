@@ -1,11 +1,11 @@
 #include "snake.h"
 
-Snake::Snake() : lSnake(), size(1.0f, 1.0f), velocity(0.0f), length(1), color(1.0f), rotation(0.0f), direction("right") {
+Snake::Snake() : lSnake(), size(1.0f, 1.0f), color(1.0f), velocity(0.0f), length(1), rotation(0.0f), direction("right") {
 
 }
 
-Snake::Snake(std::deque<glm::vec2> lSnake, glm::vec2 size, glm::vec3 color, float velocity, std::string direction, std::string nextDirection)
-	: lSnake(lSnake), size(size), velocity(velocity), color(color), rotation(0.0f), direction(direction), nextDirection(nextDirection) {
+Snake::Snake(std::deque<glm::vec2> lSnake, glm::vec2 size, glm::vec3 color, float velocity, int length, float rotation, std::string direction)
+	: lSnake(lSnake), size(size), color(color), velocity(velocity), length(length), rotation(0.0f), direction(direction) {
 
 }
 
@@ -17,30 +17,35 @@ void Snake::drawSnake(Sprite& sprite) {
 	
 }
 
-void Snake::move(float dt, unsigned int window_width, std::string direction = "right", std::string nextDirection = "right") {
-	direction = this->nextDirection;
+void Snake::move(float dt, unsigned int window_width, std::string direction = "right") {
+
+	float xPos = this->lSnake.begin()->x;
+	float yPos = this->lSnake.begin()->y;
+	this->lastSqr = glm::vec2(this->lSnake.back());
+
+	this->lSnake.pop_back();
+
+	
 
 	if (direction == "left") {
-		this->lSnake.begin()->x -= this->velocity;
+		this->lSnake.push_front(glm::vec2(xPos - this->velocity, yPos));
 	}
 	else if (direction == "right") {
-		this->lSnake.begin()->x += this->velocity;
+		this->lSnake.push_front(glm::vec2(xPos + this->velocity, yPos));
 	}
 	else if (direction == "up") {
-		this->lSnake.begin()->y -= this->velocity;
+		this->lSnake.push_front(glm::vec2(xPos, yPos - this->velocity));
 	}
 	else if (direction == "down") {
-		this->lSnake.begin()->y += this->velocity;
+		this->lSnake.push_front(glm::vec2(xPos, yPos + this->velocity));
 	}
 	else {
 		std::cout << "ERROR: DIRECTION";
 	}
 	
-	// return this->position;
 }
 
-glm::vec2 Snake::grow() {
-	this->size.x += 30.0f;
-
-	return this->size;
+void Snake::grow() {
+	this->lSnake.push_back(this->lastSqr);
+	this->length++;
 }

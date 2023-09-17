@@ -45,7 +45,7 @@ void Game::Init()
 void Game::Update(float dt)
 {
     if (this->State == GAME_ACTIVE) {
-        snake->move(dt, this->Width, snake->direction, snake->nextDirection);
+        snake->move(dt, this->Width, snake->direction);
 
         float posX = snake->lSnake.begin()->x;
         float posY = snake->lSnake.begin()->y;
@@ -57,6 +57,7 @@ void Game::Update(float dt)
         if (glm::vec2(posX, posY) == treat->position) {
             treat->respawn();
             treat->drawTreat(*sprite);
+            snake->grow();
         }
     }
     
@@ -67,35 +68,35 @@ void Game::ProcessInput(float dt)
     if (this->State == GAME_MENU) {
         if (this->Keys[GLFW_KEY_LEFT]) {
             this->State = GAME_ACTIVE;
-            snake->nextDirection = "left";
+            snake->direction = "left";
         }
         if (this->Keys[GLFW_KEY_RIGHT]) {
             this->State = GAME_ACTIVE;
-            snake->nextDirection = "right";
+            snake->direction = "right";
         }
         if (this->Keys[GLFW_KEY_UP]) {
             this->State = GAME_ACTIVE;
-            snake->nextDirection = "up";
+            snake->direction = "up";
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
             this->State = GAME_ACTIVE;
-            snake->nextDirection = "down";
+            snake->direction = "down";
         }
     }
 
     if (this->State == GAME_ACTIVE) {
 
         if (this->Keys[GLFW_KEY_LEFT]) {
-            snake->nextDirection = "left";
+            snake->direction = "left";
         }
         if (this->Keys[GLFW_KEY_RIGHT]) {
-            snake->nextDirection = "right";
+            snake->direction = "right";
         }
         if (this->Keys[GLFW_KEY_UP]) {
-            snake->nextDirection = "up";
+            snake->direction = "up";
         }
         if (this->Keys[GLFW_KEY_DOWN]) {
-            snake->nextDirection = "down";
+            snake->direction = "down";
         }
 
     }
@@ -114,5 +115,5 @@ void Game::Reset() {
     this->State = GAME_MENU;
     snake->size = SQR_SIZE;
     snake->lSnake.clear();
-    snake->lSnake.push_back(glm::vec2(400.0f, 300.0f));
+    snake->lSnake.push_front(glm::vec2(400.0f, 300.0f));
 }
