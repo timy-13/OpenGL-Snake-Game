@@ -66,6 +66,7 @@ int main()
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
     float moveTime = 0.0f;
+    float moveInterval = 0.3f;
 
     // render loop
     // -----------
@@ -85,11 +86,17 @@ int main()
         SnakeGame.ProcessInput(deltaTime);
 
         // SnakeGame.Update(deltaTime);
-
-        if (moveTime > 0.3f) {
+        
+        if (moveTime > moveInterval) {
             SnakeGame.Update(deltaTime);
             moveTime = 0;
+            if (SnakeGame.ateTreat == true) {
+                moveInterval -= 0.01f;
+            }
         }
+        
+
+
         
 
         // render

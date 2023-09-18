@@ -26,6 +26,7 @@ public:
     // game state
     GameState    State;
     bool         Keys[1024];
+    bool ateTreat;
     unsigned int Width, Height;
 
     // constructor/destructor
@@ -40,6 +41,7 @@ public:
     void Update(float dt);
     void Render();
     void Reset();
+    bool snakeCollision();
 };
 
 #endif

@@ -45,6 +45,7 @@ void Game::Init()
 void Game::Update(float dt)
 {
     if (this->State == GAME_ACTIVE) {
+        ateTreat = false;
         snake->move(dt, this->Width, snake->direction);
 
         float posX = snake->lSnake.begin()->x;
@@ -53,12 +54,17 @@ void Game::Update(float dt)
         if (posX < 0 || posX > (this->Width - SQR_SIZE.x) || posY < 0 || posY >(this->Height - SQR_SIZE.y)) {
             this->Reset();
         }
+
+        if (this->snakeCollision()) {
+            this->Reset();
+        }
         
         if (glm::vec2(posX, posY) == treat->position) {
             treat->respawn();
             treat->drawTreat(*sprite);
             snake->grow();
-        }
+            ateTreat = true;
+        }     
     }
     
 }
@@ -114,6 +120,24 @@ void Game::Render()
 void Game::Reset() {
     this->State = GAME_MENU;
     snake->size = SQR_SIZE;
+    snake->velocity = SNAKE_VELOCITY;
     snake->lSnake.clear();
-    snake->lSnake.push_front(glm::vec2(400.0f, 300.0f));
+    snake->lSnake.push_front(glm::vec2(0.0f, 0.0f));
+}
+
+bool Game::snakeCollision() {
+    // check if snake has collided with itself
+
+    std::deque<glm::vec2>::iterator it;
+
+    if (snake->lSnake.size() > 1) {
+        for (it = std::next(snake->lSnake.begin()); it != snake->lSnake.end(); ++it) {
+            if (snake->lSnake.front() == *it) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+    
 }
