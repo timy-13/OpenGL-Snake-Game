@@ -10,4 +10,4 @@ This project has been created with code adapted from LearnOpenGL (learnopengl.co
 https://twitter.com/JoeyDeVriez
 
 Unless otherwise noted, code samples from learnopengl.com are under the terms of the CC BY 4.0 license as published by
-Creative Commons, either version 4 of the License, or (at your option) any later version.
+Creative Commons
